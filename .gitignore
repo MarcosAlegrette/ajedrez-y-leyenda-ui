@@ -1,0 +1,5 @@
+node_modules
+dist
+.env.local
+# public/assets y src/data se generan desde ../data con `npm run prepare-game`
+# y SE COMMITEAN: el build de Amplify no tiene ffmpeg ni los archivos originales.

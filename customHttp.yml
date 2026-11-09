@@ -1,0 +1,25 @@
+# Headers de caché para Amplify Hosting.
+customHeaders:
+  # index.html siempre se revalida para tomar el último deploy
+  - pattern: '/'
+    headers:
+      - key: Cache-Control
+        value: 'no-cache'
+  - pattern: '/index.html'
+    headers:
+      - key: Cache-Control
+        value: 'no-cache'
+  # JS y CSS de Vite llevan hash en el nombre: se pueden cachear para siempre
+  - pattern: '/assets/*.js'
+    headers:
+      - key: Cache-Control
+        value: 'public, max-age=31536000, immutable'
+  - pattern: '/assets/*.css'
+    headers:
+      - key: Cache-Control
+        value: 'public, max-age=31536000, immutable'
+  # Arte, audio y video originales (no cambian, pero no llevan hash): 30 días
+  - pattern: '/assets/**'
+    headers:
+      - key: Cache-Control
+        value: 'public, max-age=2592000'
